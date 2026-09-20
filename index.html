@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Chartered Integrated Services — considered capital markets, wealth, compliance, and family office conversations from Ahmedabad." />
+    <title>Chartered Integrated Services | Considered financial thinking</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Application CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="min-h-svh overflow-x-hidden bg-[#f8fafc] text-[#0f172a]">
+      <!-- SITE HEADER -->
+      <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl" data-testid="site-header">
+        <div class="mx-auto flex h-[76px] max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
+          <!-- Logo & Brand Link -->
+          <a href="#/" data-nav-to="/" class="flex items-center gap-3" data-testid="header-logo-link">
+            <img src="assets/images/logo.png" alt="Chartered Integrated Services logo" class="h-12 w-12 rounded-full object-contain" data-testid="header-logo-image" />
+            <span class="hidden max-w-[170px] font-heading text-[0.86rem] font-bold uppercase leading-[1.05] tracking-[0.08em] text-[#0a192f] sm:block" data-testid="header-company-name">
+              Chartered Integrated Services
+            </span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation" data-testid="desktop-navigation" id="desktop-navigation">
+            <!-- Dynamically populated from NAV_ITEMS -->
+          </nav>
+
+          <!-- Desktop WhatsApp CTA -->
+          <div class="hidden items-center gap-3 lg:flex">
+            <a href="https://wa.me/919853337222?text=Hello%20Chartered%20Integrated%20Services,%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-2 h-10 rounded-xl bg-[#0a192f] px-5 text-xs font-semibold text-white shadow-[0_8px_24px_rgba(10,25,47,0.16)] transition-colors duration-200 hover:bg-[#059669]" data-testid="header-whatsapp-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              <span>Start a conversation</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Mobile Hamburger Toggle Button -->
+          <button type="button" class="grid size-10 place-items-center rounded-full border border-slate-200 text-[#0a192f] transition-colors duration-200 hover:border-[#059669] hover:text-[#059669] lg:hidden" aria-label="Open navigation" data-testid="mobile-navigation-toggle-button" id="mobile-navigation-toggle-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Mobile Drawer Panel -->
+        <div class="border-t border-slate-200 bg-white px-5 py-4 lg:hidden hidden" data-testid="mobile-navigation-panel" id="mobile-navigation-panel">
+          <nav class="mx-auto flex max-w-[1320px] flex-col gap-1" aria-label="Mobile navigation">
+            <div id="mobile-navigation-links" class="flex flex-col gap-1">
+              <!-- Dynamically populated from NAV_ITEMS -->
+            </div>
+            <a href="https://wa.me/919853337222?text=Hello%20Chartered%20Integrated%20Services,%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-[#059669] py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0a192f]" data-testid="mobile-whatsapp-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              <span>WhatsApp enquiry</span>
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT MOUNT POINT -->
+      <main data-testid="site-main" id="main-content">
+        <!-- Rendered dynamically by app.js router -->
+      </main>
+
+      <!-- SITE FOOTER -->
+      <footer class="relative overflow-hidden bg-[#071526] text-white" data-testid="site-footer">
+        <div class="pointer-events-none absolute -right-32 -top-36 size-[420px] rounded-full border border-white/10"></div>
+        <div class="pointer-events-none absolute -right-20 -top-24 size-[280px] rounded-full border border-[#d97706]/30"></div>
+        
+        <div class="mx-auto max-w-[1320px] px-5 pb-8 pt-16 sm:px-8 lg:px-12">
+          <div class="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.3fr_0.8fr_1fr]">
+            <!-- Column 1: Brand & Description -->
+            <div>
+              <div class="flex items-center gap-3" data-testid="footer-brand-block">
+                <img src="assets/images/logo.png" alt="Chartered Integrated Services logo" class="size-12 rounded-full bg-white object-contain" data-testid="footer-logo-image" />
+                <div>
+                  <p class="font-heading text-sm font-bold uppercase tracking-[0.1em]" data-testid="footer-company-name">Chartered Integrated Services</p>
+                  <p class="mt-1 text-xs text-slate-400" data-testid="footer-tagline">Integrated thinking. Considered action.</p>
+                </div>
+              </div>
+              <p class="mt-6 max-w-md text-sm leading-7 text-slate-400" data-testid="footer-description">
+                One connected desk for market access, wealth conversations, compliance support, and long-term family planning.
+              </p>
+              <a href="https://wa.me/919853337222?text=Hello%20Chartered%20Integrated%20Services,%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noreferrer" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#86efac] transition-colors duration-200 hover:text-white" data-testid="footer-whatsapp-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                <span>Talk to our team</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+            </div>
+
+            <!-- Column 2: Explore Links -->
+            <div>
+              <p class="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#d97706]" data-testid="footer-explore-label">Explore</p>
+              <div class="mt-5 grid gap-3" data-testid="footer-explore-links">
+                <a href="#/services" data-nav-to="/services" class="text-sm text-slate-300 transition-colors duration-200 hover:text-white" data-testid="footer-services-link">Our services</a>
+                <a href="#/market-updates" data-nav-to="/market-updates" class="text-sm text-slate-300 transition-colors duration-200 hover:text-white" data-testid="footer-market-updates-link">Market updates</a>
+                <a href="#/calculators" data-nav-to="/calculators" class="text-sm text-slate-300 transition-colors duration-200 hover:text-white" data-testid="footer-calculators-link">Financial calculators</a>
+                <a href="#/about" data-nav-to="/about" class="text-sm text-slate-300 transition-colors duration-200 hover:text-white" data-testid="footer-about-link">About us</a>
+              </div>
+            </div>
+
+            <!-- Column 3: Find Us Contact Info -->
+            <div>
+              <p class="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#d97706]" data-testid="footer-contact-label">Find us</p>
+              <div class="mt-5 grid gap-4 text-sm text-slate-300">
+                <a href="mailto:chartered.social@gmail.com" class="flex items-start gap-3 transition-colors duration-200 hover:text-white" data-testid="footer-email-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-4 shrink-0 text-[#86efac]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <span>chartered.social@gmail.com</span>
+                </a>
+                <a href="tel:+919853337222" class="flex items-start gap-3 transition-colors duration-200 hover:text-white" data-testid="footer-phone-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-4 shrink-0 text-[#86efac]"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <span>+91 98533 37222</span>
+                </a>
+                <p class="flex items-start gap-3" data-testid="footer-address">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-4 shrink-0 text-[#86efac]"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>B: 807-808, The Gateway, Nr. Parikh Hospital, Nikol, Ahmedabad - 380049</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Disclaimer & Copyright -->
+          <div class="mt-8 flex flex-col gap-4 text-xs leading-6 text-slate-500 lg:flex-row lg:items-center lg:justify-between">
+            <p class="max-w-3xl" data-testid="footer-disclaimer">
+              Investment decisions should reflect your own goals, horizon, and suitability. Chartered Integrated Services provides considered market access, advisory support, and digital compliance pathways. Please read all scheme and product-related documents carefully before investing.
+            </p>
+            <p class="shrink-0" data-testid="footer-copyright">
+              © 2025 Chartered Integrated Services. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts (Ordered: Icons -> Data -> Calculator -> Router -> App) -->
+    <script src="assets/js/icons.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/calculator.js"></script>
+    <script src="assets/js/router.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
