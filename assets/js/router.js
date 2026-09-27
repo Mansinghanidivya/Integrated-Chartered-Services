@@ -1,4 +1,6 @@
-// Client-side router supporting both hash and HTML5 history routing
+// Client-side router supporting hash navigation and dynamic routes
+// SEO and View State Management for Chartered Integrated Services Private Limited
+
 const Router = {
   routes: {},
   currentPath: '',
@@ -8,22 +10,17 @@ const Router = {
   },
 
   getCurrentPath() {
-    // If hash routing is used (e.g. #/services/broking), parse hash
     if (window.location.hash && window.location.hash.startsWith('#/')) {
       return window.location.hash.slice(1);
     }
-    // If opened via file:/// without hash, default to '/'
     if (window.location.protocol === 'file:') {
       return window.location.hash ? window.location.hash.replace(/^#/, '') : '/';
     }
-    // Otherwise fallback to pathname or default '/'
     return window.location.pathname || '/';
   },
 
   navigateTo(path) {
     if (!path.startsWith('/')) path = '/' + path;
-    
-    // Always use hash routing so the site works perfectly on file://, GitHub Pages, Netlify, and local servers
     window.location.hash = '#' + path;
     this.handleRoute(path);
   },
@@ -33,7 +30,7 @@ const Router = {
     if (!path.startsWith('/')) path = '/' + path;
     this.currentPath = path;
 
-    // Scroll to top
+    // Scroll to top instantly
     window.scrollTo({ top: 0, behavior: 'instant' });
 
     // Update active nav links
@@ -48,55 +45,103 @@ const Router = {
       mobileBtn.innerHTML = renderIcon('menu', 'size-5');
     }
 
-    // Match exact route
+    // Close any open desktop dropdowns
+    document.querySelectorAll('.nav-dropdown-menu').forEach(el => el.classList.add('hidden'));
+
+    // 1. Direct route match
     if (this.routes[path]) {
       this.routes[path]({});
+      this.updatePageMeta(path);
       return;
     }
 
-    // Match dynamic route: /services/:serviceId
+    // 2. Dynamic route: /solutions/:solutionId
+    if (path.startsWith('/solutions/')) {
+      const solutionId = path.replace('/solutions/', '').split('?')[0].split('#')[0];
+      if (this.routes['/solutions/:solutionId']) {
+        this.routes['/solutions/:solutionId']({ solutionId });
+        this.updatePageMeta(path, solutionId);
+        return;
+      }
+    }
+
+    // 3. Dynamic route backward compatibility: /services/:serviceId -> redirect or handle
     if (path.startsWith('/services/')) {
-      const serviceId = path.replace('/services/', '').split('?')[0].split('#')[0];
-      if (this.routes['/services/:serviceId']) {
-        this.routes['/services/:serviceId']({ serviceId });
+      const solutionId = path.replace('/services/', '').split('?')[0].split('#')[0];
+      if (this.routes['/solutions/:solutionId']) {
+        this.routes['/solutions/:solutionId']({ solutionId });
+        this.updatePageMeta(path, solutionId);
         return;
       }
     }
 
-    // Match dynamic route: /market-updates/:serviceId
+    if (path === '/services') {
+      if (this.routes['/solutions']) {
+        this.routes['/solutions']({});
+        this.updatePageMeta('/solutions');
+        return;
+      }
+    }
+
+    // 4. Dynamic route: /market-updates/:updateId
     if (path.startsWith('/market-updates/')) {
-      const serviceId = path.replace('/market-updates/', '').split('?')[0].split('#')[0];
-      if (this.routes['/market-updates/:serviceId']) {
-        this.routes['/market-updates/:serviceId']({ serviceId });
+      const updateId = path.replace('/market-updates/', '').split('?')[0].split('#')[0];
+      if (this.routes['/market-updates/:updateId']) {
+        this.routes['/market-updates/:updateId']({ updateId });
+        this.updatePageMeta(path, updateId);
         return;
       }
     }
 
-    // Default route
+    // 5. Default route fallback
     if (this.routes['/']) {
       this.routes['/']({});
+      this.updatePageMeta('/');
     }
   },
 
+  updatePageMeta(path, paramId = '') {
+    const titles = {
+      '/': 'Chartered Integrated Services | Research Driven Wealth Creation | Ahmedabad',
+      '/about': 'About Us & Leadership | CA Haresh Bhatreja | Chartered Integrated Services',
+      '/solutions': 'Investment Solutions | Equities, PMS, AIF, Mutual Funds, Bonds | Chartered Integrated Services',
+      '/research': 'Research & Insights | Institutional Market Research | Chartered Integrated Services',
+      '/market-updates': 'Market Updates Desk | Indian & Global Capital Signals | Chartered Integrated Services',
+      '/entrepreneurs': 'For Entrepreneurs & Business Owners | Personal Wealth & Corporate Advisory',
+      '/who-we-serve': 'Who We Serve | Individuals, HNIs, UHNIs & Families | Chartered Integrated Services',
+      '/calculators': 'Financial Calculators | SIP, CAGR, XIRR, Retirement, EMI | Chartered Integrated Services',
+      '/contact': 'Contact & Consultation | B-807 The Gateway, Nikol, Ahmedabad | Chartered Integrated Services'
+    };
+
+    if (paramId && (path.startsWith('/solutions/') || path.startsWith('/services/'))) {
+      const sol = SOLUTIONS_DATA.find(s => s.id === paramId);
+      if (sol) {
+        document.title = `${sol.name} | Investment Solutions | Chartered Integrated Services`;
+        return;
+      }
+    }
+
+    document.title = titles[path] || 'Chartered Integrated Services | Research Driven Wealth Creation';
+  },
+
   updateActiveLinks(path) {
-    // Top-level section for matching active tab
     const baseSection = path === '/' ? '/' : '/' + path.split('/')[1];
 
     document.querySelectorAll('[data-nav-to]').forEach(link => {
       const target = link.getAttribute('data-nav-to');
-      const isTargetActive = (target === '/' && path === '/') || (target !== '/' && baseSection === target);
+      const isTargetActive = (target === '/' && path === '/') || (target !== '/' && (baseSection === target || path.startsWith(target)));
 
       if (link.dataset.navType === 'desktop') {
         if (isTargetActive) {
-          link.className = 'relative px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-200 after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:bg-[#d97706] after:transition-transform after:duration-200 hover:text-[#059669] hover:after:scale-x-100 text-[#059669] after:scale-x-100';
+          link.className = 'relative px-3 py-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#059669] after:absolute after:inset-x-3 after:bottom-0 after:h-[2px] after:bg-[#059669] after:scale-x-100 transition-all duration-200';
         } else {
-          link.className = 'relative px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-200 after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:bg-[#d97706] after:transition-transform after:duration-200 hover:text-[#059669] hover:after:scale-x-100 text-slate-500 after:scale-x-0';
+          link.className = 'relative px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-slate-600 hover:text-[#0a192f] after:absolute after:inset-x-3 after:bottom-0 after:h-[2px] after:bg-[#059669] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 transition-colors duration-200';
         }
       } else if (link.dataset.navType === 'mobile') {
         if (isTargetActive) {
-          link.className = 'rounded-xl px-4 py-3 text-sm font-semibold text-[#059669] bg-emerald-50';
+          link.className = 'flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#059669] bg-emerald-50';
         } else {
-          link.className = 'rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-emerald-50 hover:text-[#059669]';
+          link.className = 'flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0a192f]';
         }
       }
     });
